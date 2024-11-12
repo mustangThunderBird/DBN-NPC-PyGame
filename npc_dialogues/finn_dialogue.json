@@ -1,0 +1,30 @@
+{
+    "Greet": {
+        "positive": ["Oh, it's you again. How exciting.", "Hi, I guess.", "Back for more, huh?"],
+        "negative": ["Wow, this day just keeps getting better… not.", "Oh, it's you. Again.", "Didn't expect to see you here. Again."]
+    },
+    "Insult": {
+        "positive": ["Wow, creative insult. Did you think of that all by yourself?", "Ouch, I'm devastated… not.", "Really? That's the best you got?"],
+        "negative": ["Really? That was uncalled for.", "Harsh. Even for you.", "Maybe learn some manners next time."]
+    },
+    "Trade": {
+        "positive": ["Sure, why not? Let's get this over with.", "Alright, I'll take it.", "Fine, fine, let's trade."],
+        "negative": ["Wow, this feels like a rip-off.", "I expected better from you.", "I wouldn't call this a fair trade."]
+    },
+    "Compliment": {
+        "positive": ["Flattery won't get you anywhere… but go on.", "If you say so.", "Thanks, I guess?"],
+        "negative": ["That sounded… rehearsed.", "Sure, if you say so.", "Not sure if I believe that, but okay."]
+    },
+    "Challenge": {
+        "positive": ["A challenge? Please, don't embarrass yourself.", "Alright, bring it on.", "This'll be fun to watch."],
+        "negative": ["Not sure I'm in the mood for this.", "Is this really necessary?", "I don't think this will end well for you."]
+    },
+    "Gift": {
+        "positive": ["Oh, a gift? How… unexpected.", "Hmm, I suppose this is okay.", "Alright, I'll take it, thanks."],
+        "negative": ["This is… disappointing.", "Is this some kind of joke?", "You couldn't find anything better?"]
+    },
+    "Ask for Help": {
+        "positive": ["Fine, I suppose I could be persuaded to help.", "You need help? Shocker.", "I'll help, but don't get used to it."],
+        "negative": ["Help you? Seriously?", "Yeah… no. Figure it out yourself.", "Not in the mood to play hero today."]
+    }
+}

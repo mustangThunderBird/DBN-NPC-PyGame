@@ -1,0 +1,30 @@
+{
+    "Greet": {
+        "positive": ["Hey there! Always great to see you!", "Hi! I was hoping to run into you!", "Hello! You always brighten my day!"],
+        "negative": ["Oh, are you okay? You seem a bit off.", "Hi... is everything alright?", "Hello... you seem different today."]
+    },
+    "Insult": {
+        "positive": ["Oh, I'm sure you didn't mean that. We all have our moments!", "Haha, you're funny when you're trying to be mean.", "Well, everyone has off days. Let's move on!"],
+        "negative": ["Ouch, that was harsh!", "That really hurt my feelings.", "I thought we were friends..."]
+    },
+    "Trade": {
+        "positive": ["Thank you so much! I knew I could count on you!", "This is so helpful, really appreciate it!", "You're the best! Thanks for helping out."],
+        "negative": ["Oh... I guess that wasn't what I expected.", "This doesn't feel fair...", "I thought you'd offer something better."]
+    },
+    "Compliment": {
+        "positive": ["Aw, that's so sweet of you to say!", "Thank you, you're too kind!", "You know just how to make someone's day!"],
+        "negative": ["Thanks, but that feels a bit forced.", "Are you just saying that?", "Hmm, that's… an interesting compliment."]
+    },
+    "Challenge": {
+        "positive": ["A little friendly competition? Count me in!", "You think you can beat me? Let's see!", "Bring it on! I love a good challenge."],
+        "negative": ["I'm not sure I'm up for this...", "Do we really need to compete?", "I don't think this is a good idea."]
+    },
+    "Gift": {
+        "positive": ["Oh wow! This is amazing, thank you!", "You didn't have to! This is so thoughtful!", "I'll treasure this, really appreciate it!"],
+        "negative": ["Oh... well, I didn't need this.", "Are you sure you're giving this to me?", "This doesn't feel very thoughtful."]
+    },
+    "Ask for Help": {
+        "positive": ["Of course, I'm always happy to lend a hand!", "Just tell me what you need, I'm here to help.", "Anything for a friend, let's do it!"],
+        "negative": ["I'll help, but I'm not sure I can trust you fully.", "I guess I could help, but please don't push it.", "I'm a bit hesitant, but alright."]
+    }
+}

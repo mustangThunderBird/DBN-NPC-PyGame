@@ -1,0 +1,30 @@
+{
+    "Greet": {
+        "positive": ["Hello…", "Greetings.", "Oh, it's you."],
+        "negative": ["...What do you want?", "Is there something you need?", "Why are you here?"]
+    },
+    "Insult": {
+        "positive": ["I see.", "Interesting…", "Very well."],
+        "negative": ["That was unnecessary.", "I don't appreciate that.", "I expected better from you."]
+    },
+    "Trade": {
+        "positive": ["I appreciate it.", "Thank you.", "This is acceptable."],
+        "negative": ["I was expecting something… more.", "Is this all?", "This doesn't seem fair."]
+    },
+    "Compliment": {
+        "positive": ["...Thank you.", "I'll take that as a compliment.", "Noted."],
+        "negative": ["That was… strange.", "I don't need your flattery.", "Save your words."]
+    },
+    "Challenge": {
+        "positive": ["If that's what you wish.", "Very well.", "Let's proceed."],
+        "negative": ["This feels pointless.", "Is this truly necessary?", "I'd rather not."]
+    },
+    "Gift": {
+        "positive": ["I wasn't expecting this.", "Thank you.", "This is… thoughtful."],
+        "negative": ["You didn't need to.", "This doesn't mean much to me.", "I'll keep it, for now."]
+    },
+    "Ask for Help": {
+        "positive": ["If it's truly necessary.", "I can assist.", "What do you need?"],
+        "negative": ["I'm not obligated to help.", "Do it yourself.", "I'm not in the mood to help."]
+    }
+}
