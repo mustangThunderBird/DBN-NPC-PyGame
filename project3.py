@@ -21,11 +21,17 @@ def check_end_conditions(npc_list):
 def display_end_screen(screen, font, result):
     screen.fill((255, 255, 255))
     if result == "win":
-        message = "You Win! You've formed a strong friendship with at least one NPC!"
+        messages = ["You Win! You've formed a strong friendship", "with at least one NPC!"]
+    elif result == "lose":
+        messages = ["You Lose! At least one NPC has become", "extremely hostile."]
     else:
-        message = "You Lose! At least one NPC has become extremely hostile."
+        messages = ["You Lose! You have reached the maximum number", "of interactions without forming a strong friendship."]
 
-    draw_text(message, font, screen, 100, 200, (0, 0, 0))
+    #draw_text(message, font, screen, 100, 200, (0, 0, 0))
+    y_pos = 200
+    for message in messages:
+        draw_text(message, font, screen, 100, y_pos, (0, 0, 0))
+        y_pos += 25
     draw_text("Press R to Restart or Q to Quit", font, screen, 100, 300, (0, 0, 0))
     pygame.display.flip()
 
@@ -62,13 +68,27 @@ def main():
     font = pygame.font.Font(None, 36)
 
     # Create NPCs
-    npc1 = NPC("Sunny", "Neutral", 40, (255, 0, 0), (150, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "sunny_dialogue.json"))  # Red NPC
-    npc2 = NPC("Finn", "Neutral", 40, (0, 255, 0), (400, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "finn_dialogue.json"))  # Green NPC
-    npc3 = NPC("Raven", "Neutral", 40, (0, 0, 255), (650, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "raven_dialogue.json"))  # Blue NPC
+    npc1 = NPC("Sunny", "Neutral", 40, (150, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "sunny_dialogue.json"), os.path.join(THIS_DIRECTORY, "npc_images", "sunny.png"))  # Red NPC
+    npc2 = NPC("Finn", "Neutral", 40, (400, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "finn_dialogue.json"), os.path.join(THIS_DIRECTORY, "npc_images", "finn.png"))  # Green NPC
+    npc3 = NPC("Raven", "Neutral", 40, (650, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "raven_dialogue.json"), os.path.join(THIS_DIRECTORY, "npc_images", "raven.png"))  # Blue NPC
     npc_list = [npc1, npc2, npc3]
+
+    # Define valid keys and corresponding actions
+    valid_keys = {
+        pygame.K_g: "Greet",
+        pygame.K_t: "Trade",
+        pygame.K_i: "Insult",
+        pygame.K_c: "Compliment",
+        pygame.K_l: "Gift",
+        pygame.K_e: "Challenge",
+        pygame.K_h: "Ask for Help"
+    }
 
     # Main game loop
     running = True
+    error_message = ""
+    error_time = 0
+
     while running:
         screen.fill(white)
         current_time = time.time()
@@ -80,14 +100,16 @@ def main():
                 npc.draw_score(screen, font, black)
             draw_text(f"Interactions Left: {interaction_limit - interaction_count}", font, screen, 10, 50, black)
             if npc_response and current_time - response_time < 2:  # Show response for 2 seconds
-                draw_text(f"NPC says: {npc_response}", font, screen, 10, 500, black)
+                draw_text(f"{npc_response}", font, screen, 10, 500, black)
         else:
             # Display selected NPC info and action options
             draw_text(f"{selected_npc.name} State: {selected_npc.state}", font, screen, 10, 10, black)
             draw_text(f"{selected_npc.name}'s Relationship Score: {selected_npc.relationship_score}", font, screen, 10, 50, black)
             draw_text("Press G to Greet, T to Trade, I to Insult", font, screen, 10, 150, black)
             draw_text("Press C to Compliment, L to Gift, E to Challenge, H to Ask for Help", font, screen, 10, 180, black)
-        
+            if error_message and current_time - error_time < 2:  # Show error message for 2 seconds
+                draw_text(f"{error_message}", font, screen, 10, 550, (255, 0, 0))  # Display error in red
+                
         # Check win/lose conditions after each interaction
         game_result = check_end_conditions(npc_list)
         if game_result:
@@ -95,7 +117,14 @@ def main():
             if action == "restart":
                 main()  # Restart the game
             return  # End the game if quit
-        
+
+        # Additional check for neutral outcome if interaction limit is reached
+        if interaction_count >= interaction_limit and not game_result:
+            action = display_end_screen(screen, font, "neutral")
+            if action == "restart":
+                main()  # Restart the game
+            return  # End the game if quit
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -110,23 +139,18 @@ def main():
                         selected_npc = this_npc
                         break
             elif event.type == pygame.KEYDOWN and selected_npc is not None and interaction_count < interaction_limit:
-                if event.key == pygame.K_g:
-                    npc_response = selected_npc.handle_action("Greet")
-                elif event.key == pygame.K_t:
-                    npc_response = selected_npc.handle_action("Trade")
-                elif event.key == pygame.K_i:
-                    npc_response = selected_npc.handle_action("Insult")
-                elif event.key == pygame.K_c:
-                    npc_response = selected_npc.handle_action("Compliment")
-                elif event.key == pygame.K_l:
-                    npc_response = selected_npc.handle_action("Gift")
-                elif event.key == pygame.K_e:
-                    npc_response = selected_npc.handle_action("Challenge")
-                elif event.key == pygame.K_h:
-                    npc_response = selected_npc.handle_action("Ask for Help")
-                interaction_count += 1
-                selected_npc = None  # Reset selected NPC
-                response_time = time.time() + 2  # Set the response timer for 2 seconds
+                if event.key in valid_keys:
+                    # If key is valid, perform action and increment count
+                    action = valid_keys[event.key]
+                    npc_response = selected_npc.handle_action(action)
+                    interaction_count += 1
+                    selected_npc = None  # Reset selected NPC
+                    response_time = time.time()  # Set the response timer for 2 seconds
+                    error_message = ""  # Clear any previous error message
+                else:
+                    # Show error message for invalid key
+                    error_message = "Invalid key! Please press a valid option."
+                    error_time = time.time()  # Start timer for the error message
 
         pygame.display.flip()
 

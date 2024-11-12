@@ -3,14 +3,15 @@ import pygame
 import json
 
 class NPC:
-    def __init__(self, name, state, relationship_score, color, position, radius, dialogue_file):
+    def __init__(self, name, state, relationship_score, position, radius, dialogue_file, image_file):
         self.name = name
         self.state = state
         self.relationship_score = relationship_score
-        self.color = color
         self.position = position
         self.radius = radius
         self.dialogue = self.load_dialogue(dialogue_file)
+        self.image = pygame.image.load(image_file)  # Load the image file for the sprite
+        self.image = pygame.transform.scale(self.image, (156, 156)) 
 
     def load_dialogue(self, filename):
         with open(filename, 'r') as file:
@@ -26,7 +27,7 @@ class NPC:
         screen.blit(score_surface, (self.position[0] - 30, self.position[1] + 80))
 
     def draw_face(self, screen):
-        pygame.draw.circle(screen, self.color, self.position, self.radius)
+        screen.blit(self.image, (self.position[0] - 50, self.position[1] - 50))
 
     def update_state(self):
         if self.relationship_score >= 75:
@@ -90,5 +91,5 @@ class NPC:
     def choose_response(self, action, outcome):
         # Choose response based on action and outcome
         if outcome in self.dialogue[action]:
-            return random.choice(self.dialogue[action][outcome])
+            return f"{self.name} says: {random.choice(self.dialogue[action][outcome])}"
         return ""
