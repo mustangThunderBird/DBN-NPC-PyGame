@@ -13,7 +13,7 @@
     },
     "Compliment": {
         "positive": ["Aw, that's so sweet of you to say!", "Thank you, you're too kind!", "You know just how to make someone's day!"],
-        "negative": ["Thanks, but that feels a bit forced.", "Are you just saying that?", "Hmm, that's… an interesting compliment."]
+        "negative": ["Thanks, but that feels a bit forced.", "Are you just saying that?", "Hmm, that's... an interesting compliment."]
     },
     "Challenge": {
         "positive": ["A little friendly competition? Count me in!", "You think you can beat me? Let's see!", "Bring it on! I love a good challenge."],
