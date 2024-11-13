@@ -68,9 +68,9 @@ def main():
     font = pygame.font.Font(None, 36)
 
     # Create NPCs
-    npc1 = NPC("Sunny", "Neutral", 40, (150, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "sunny_dialogue.json"), os.path.join(THIS_DIRECTORY, "npc_images", "sunny.png"))  # Red NPC
-    npc2 = NPC("Finn", "Neutral", 40, (400, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "finn_dialogue.json"), os.path.join(THIS_DIRECTORY, "npc_images", "finn.png"))  # Green NPC
-    npc3 = NPC("Raven", "Neutral", 40, (650, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "raven_dialogue.json"), os.path.join(THIS_DIRECTORY, "npc_images", "raven.png"))  # Blue NPC
+    npc1 = NPC("Sunny", "Neutral", 40, (150, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "sunny_dialogue.json"), os.path.join(THIS_DIRECTORY, "npc_images", "sunny.png"))
+    npc2 = NPC("Finn", "Neutral", 40, (400, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "finn_dialogue.json"), os.path.join(THIS_DIRECTORY, "npc_images", "finn.png"))
+    npc3 = NPC("Raven", "Neutral", 40, (650, 200), 50, os.path.join(THIS_DIRECTORY, "npc_dialogues", "raven_dialogue.json"), os.path.join(THIS_DIRECTORY, "npc_images", "raven.png")) 
     npc_list = [npc1, npc2, npc3]
 
     # Define valid keys and corresponding actions
